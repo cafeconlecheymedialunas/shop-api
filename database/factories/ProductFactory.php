@@ -22,7 +22,7 @@ class ProductFactory extends Factory
             'title' => fake()->title(),
             'price' => fake()->numberBetween(1500, 6000),
             'sale_price' => fake()->numberBetween(1000, 4000),
-            'size' => fake()->randomElement(['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL']),
+            'size' => fake()->randomElement(config("defaultfieldvalues.products.size")),
             'description' => fake()->text(),
             'additional_info' => fake()->text(),
             'tech_details' => fake()->text(),

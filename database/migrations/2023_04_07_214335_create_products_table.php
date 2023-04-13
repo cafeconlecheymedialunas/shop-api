@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title', 50);
             $table->integer('price');
             $table->integer('sale_price');
-            $table->enum('size', ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL']);
+            $table->enum('size', config("defaultfieldvalues.products.size"));
             $table->text('description');
             $table->text('additional_info');
             $table->text('tech_details');

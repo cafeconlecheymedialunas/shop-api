@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->enum('status', ['Pending', 'Completed', 'Canceled']);
+            $table->enum('status', config("defaultfieldvalues.orders.status"));
             $table->text('order_notes');
             $table->integer('total');
             $table->string('payment');

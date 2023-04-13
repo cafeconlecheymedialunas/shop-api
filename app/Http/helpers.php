@@ -1,4 +1,5 @@
 <?php
+
 function setRelationshipData($type, $data)
 {
     $return = [];
@@ -23,3 +24,5 @@ function setRelationshipData($type, $data)
 
     return $return;
 }
+
+

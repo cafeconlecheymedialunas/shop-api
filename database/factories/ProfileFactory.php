@@ -17,7 +17,8 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            'last_name' => fake()->name(),
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
             'address_street' => fake()->address(),
             'address_apparment' => '4f',
             'address_town' => fake()->city(),
