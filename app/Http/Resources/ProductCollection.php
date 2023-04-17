@@ -7,11 +7,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ProductCollection extends ResourceCollection
 {
-    /**
-     * Transform the resource collection into an array.
-     *
-     * @return array<int|string, mixed>
-     */
+  
     public function toArray(Request $request): array
     {
         return [
@@ -19,6 +15,19 @@ class ProductCollection extends ResourceCollection
             'version' => '1.0',
             'links' => [
                 'self' => route('products.index')
+            ]
+        ];
+    }
+
+    public function with($request)
+    {
+        return [
+            "included" => [
+                "orders" => $this->collection->pluck("orders")->unique()->values()->all(),
+                "categories" => $this->collection->pluck("categories")->unique()->values()->all(),
+                "tags" => $this->collection->pluck("tags")->unique()->values()->all(),
+                "ratings" => $this->collection->pluck("ratings")->unique()->values()->all(),
+                "colors" => $this->collection->pluck("colors")->unique()->values()->all(),
             ]
         ];
     }

@@ -22,7 +22,6 @@ class Product extends Model
         'description',
         'additional_info',
         'tech_details',
-        'color_id'
     ];
 
     public function colors() :BelongsToMany
@@ -41,14 +40,9 @@ class Product extends Model
         return $this->morphToMany(Category::class, 'categoryable');
     }
 
-    public function comments(): MorphMany
-    {
-        return $this->morphMany(Comment::class, 'commentable');
-    }
-
     public function ratings(): HasMany
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Rating::class);
     }
 
     public function orders(): BelongsToMany

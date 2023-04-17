@@ -29,7 +29,7 @@ class CouponResource extends JsonResource
             ],
 
             'relationships' => [
-                'orders' => setRelationshipData('order', $this->orders),
+                'order' =>setRelationshipData('order', $this->order)
             ],
             'links' => [
                 'self' => route('coupons.show', $this->id)

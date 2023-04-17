@@ -20,10 +20,10 @@ class ProfileResource extends JsonResource
                 'id' => $this->id,
                 'type' => 'profile',
                 'attributes' => [
-
+                    'first_name' => $this->first_name,
                     'last_name' => $this->last_name,
                     'address_street' => $this->address_street,
-                    'address_apparment' => $this->address_apparment,
+                    'address_appartment' => $this->address_appartment,
                     'address_town' => $this->address_town,
                     'address_state' => $this->address_state,
                     'address_country' => $this->address_country,

@@ -21,15 +21,14 @@ class ColorResource extends JsonResource
                 'type' => 'color',
                 'attributes' => [
 
-                    'hex_color' => $this->hex_color,
+                    'hex_code' => $this->hex_code,
                     'label' => $this->label
 
                 ]
             ],
 
             'relationships' => [
-                'user' => setRelationshipData('user', $this->user),
-                'book' => setRelationshipData('book', $this->book)
+                'products' => setRelationshipData('product', $this->products)
             ],
             'links' => [
                 'self' => route('colors.show', $this->id)

@@ -21,7 +21,7 @@ class RatingFactory extends Factory
                 return \App\Models\User::first()->id;
             },
             'product_id' => function () {
-                return \App\Models\User::first()->id;
+                return \App\Models\Product::first()->id;
             },
             "rating" =>fake()->randomElement(config("defaultfieldvalues.ratings.rating")),
             "comment" => fake()->text()

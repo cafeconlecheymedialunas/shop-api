@@ -22,4 +22,12 @@ class ProfileCollection extends ResourceCollection
             ]
         ];
     }
+    public function with($request)
+    {
+        return [
+            "included" => [
+               "user" => $this->collection->pluck("user")->unique()->values()->all()
+            ]
+        ];
+    }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('order_notes');
             $table->integer('total');
             $table->string('payment');
-            $table->foreignId('coupon_id')->constrained()->nulable();
+            $table->foreignId('coupon_id')->constrained()->nullable();
             $table->timestamps();
         });
     }

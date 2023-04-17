@@ -22,7 +22,6 @@ class CommentFactory extends Factory
             },
             "title" =>fake()->title(),
             "comment" => fake()->text()
-            
         ];
     }
 

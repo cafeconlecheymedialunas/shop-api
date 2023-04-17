@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,4 +28,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('products', ProductController::class)->names('products');
     Route::apiResource('profiles', ProfileController::class)->names('profiles');
     Route::apiResource('coupons', CouponController::class)->names('coupons');
+    Route::apiResource("categories", CategoryController::class)->names("categories");
+    Route::apiResource("comments", CommentController::class)->names("comments");
 });

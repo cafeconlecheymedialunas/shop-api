@@ -4,6 +4,8 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Http\Resources\CouponResource;
+
 
 class CouponCollection extends ResourceCollection
 {
@@ -18,7 +20,10 @@ class CouponCollection extends ResourceCollection
             'data' => $this->collection,
             'version' => '1.0',
             'links' => [
-                'self' => route('posts.index')
+                'self' => route('products.index')
+            ],
+            "included" => [
+                "orders" => OrderResource::collection($this->collection->pluck("order")->unique()->values()->all())
             ]
         ];
     }

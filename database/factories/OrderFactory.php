@@ -14,11 +14,17 @@ class OrderFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    private $coupon;
+
+
+
+
     public function definition(): array
     {
         return [
             'user_id' => function () {
-                return \App\Models\User::first()->id;
+                return \App\Models\Profile::factory()->create()->user->id;
             },
             'coupon_id' => function () {
                 return \App\Models\Coupon::factory()->create()->id;

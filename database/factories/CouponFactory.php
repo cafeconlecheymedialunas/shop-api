@@ -20,7 +20,7 @@ class CouponFactory extends Factory
         return [
 
             'limit' =>  fake()->dateTime('YYYY-MM-DD HH:MM:SS'),
-            'type' => fake()->randomElement(['fixed', 'percentage']),
+            'type' => fake()->randomElement(config("defaultfieldvalues.coupons.type")),
 
             'discount' => fake()->randomNumber(5)
         ];

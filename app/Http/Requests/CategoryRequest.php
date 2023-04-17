@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePostRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
 
     public function authorize(): bool
@@ -12,10 +12,13 @@ class StorePostRequest extends FormRequest
         return true;
     }
 
+
     public function rules(): array
     {
         return [
-            //
+
+            "name" => "string|required|max:50",
+            "image" => "string",
         ];
     }
 }

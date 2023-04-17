@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductRequest extends FormRequest
+class CommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,15 +21,9 @@ class StoreProductRequest extends FormRequest
      */
     public function rules(): array
     {
-        $options = implode(",", config("defaultfieldvalues.products.size"));
         return [
-            'title' => "required|string|max:50",
-            'price' => "required|numeric",
-            'sale_price' => "required|numeric",
-            'size' => "required|in:" . $options . "",
-            'description' => "",
-            'additional_info' => "",
-            'tech_details' => "",
+            "title" => "required|string|max:50",
+            "comment" => "required|string"
         ];
     }
 }

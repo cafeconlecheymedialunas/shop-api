@@ -10,6 +10,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = ["name", "description", "image"];
+
     public function products(): MorphToMany
     {
         return $this->morphedByMany(Product::class, 'categoryable');

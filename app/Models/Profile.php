@@ -4,25 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-USE Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Profile extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'first_name',
         'last_name',
         'address_street',
-        'address_apparment',
+        'address_appartment',
         'address_town',
         'address_state',
         'address_country',
         'address_postcode',
         'phone',
-        'user_id'
+        "avatar"
     ];
 
-    public function user() : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

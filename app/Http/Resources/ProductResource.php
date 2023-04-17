@@ -34,8 +34,12 @@ class ProductResource extends JsonResource
             ],
 
             'relationships' => [
-                'user' => setRelationshipData('user', $this->user),
-                'book' => setRelationshipData('book', $this->book)
+                'ratings' => setRelationshipData('rating', $this->ratings),
+                'tags' => setRelationshipData('tag', $this->tags),
+                'categories' => setRelationshipData('category', $this->categories),
+                'comments' => setRelationshipData('comment', $this->comments),
+                'colors' => setRelationshipData('color', $this->colors),
+                'orders' => setRelationshipData('order', $this->orders),
             ],
             'links' => [
                 'self' => route('products.show', $this->id)

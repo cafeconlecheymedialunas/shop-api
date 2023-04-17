@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ColorRequest;
 use App\Models\Color;
-use Illuminate\Http\Request;
 use App\Http\Resources\ColorCollection;
 use App\Http\Resources\ColorResource;
+
 
 class ColorController extends Controller
 {
@@ -19,7 +19,9 @@ class ColorController extends Controller
 
     public function store(ColorRequest $request)
     {
-        $color = Color::create($request->all());
+        $color = new Color($request->all());
+        $color->save();
+        $color->products()->sync($request->products);
         return new ColorResource($color);
     }
 
@@ -31,6 +33,8 @@ class ColorController extends Controller
     public function update(ColorRequest $request, Color $color)
     {
         $color->update($request->all());
+        $color->products()->sync($request->products);
+       
         return new ColorResource($color);
     }
 

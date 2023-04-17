@@ -17,15 +17,16 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            'first_name' => fake()->firstName(),
-            'last_name' => fake()->lastName(),
-            'address_street' => fake()->address(),
-            'address_apparment' => '4f',
-            'address_town' => fake()->city(),
-            'address_state' => fake('en_US')->state(),
-            'address_country' => fake()->country(),
-            'address_postcode' => fake()->numerify('ar#####'),
-            'phone' => fake()->phoneNumber(),
+            'first_name' => fake()->text(50),
+            'last_name' => fake()->text(50),
+            "avatar" => "https://picsum.photos/seed/picsum/200/300",
+            'address_street' => fake()->text(50),
+            'address_appartment' => "4 f",
+            'address_town' => fake()->text(50),
+            'address_state' => fake()->text(50),
+            'address_country' => fake()->text(50),
+            'address_postcode' => "1872",
+            'phone' => "1538764374",
             'user_id' => function () {
                 return \App\Models\User::factory()->create()->id;
             },

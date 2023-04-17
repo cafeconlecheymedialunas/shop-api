@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+
 use App\Http\Requests\StorePostRequest;
 use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostResource;
+use App\Models\User;
+use App\Models\Comment;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -17,7 +20,20 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request)
     {
-        $post = Post::create($request->all());
+        $post = new Post;
+        $post->title = $request->title;
+        $post->content = $request->content;
+
+        $user = User::find($request->user);
+        $post->user()->associate($user);
+
+
+        $post->save();
+
+        $post->categories()->sync($request->categories);
+        $post->tags()->sync($request->tags);
+
+
         return new PostResource($post);
     }
 
@@ -28,7 +44,20 @@ class PostController extends Controller
 
     public function update(StorePostRequest $request, Post $post)
     {
-        $post->update($request->all());
+        $post->title = $request->title;
+        $post->content = $request->content;
+
+        $user = User::find($request->user);
+        $post->user()->associate($user);
+
+        $post->save();
+
+
+   
+        $post->categories()->sync($request->categories);
+        $post->tags()->sync($request->tags);
+
+
         return new PostResource($post);
     }
 

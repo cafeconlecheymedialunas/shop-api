@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+
 use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
-use App\Models\Color;
+use App\Models\Product;
+
 
 class ProductController extends Controller
 {
@@ -16,17 +16,26 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('colors')->paginate(10);
+        $products = Product::with('colors',"tags","categories","ratings","orders")->paginate(10);
         return new ProductCollection($products);
     }
 
     public function store(StoreProductRequest $request)
-    {
-        $product = Product::create($request->all());
+    {  
 
+        $product = new Product();
+        $product->title = $request->title;
+        $product->price = $request->price;
+        $product->sale_price = $request->sale_price;
+        $product->size = $request->size;
+        $product->description = $request->description;
+        $product->additional_info = $request->additional_info;
+        $product->tech_details = $request->tech_details;
 
+        $product->save();
 
         $product->colors()->sync($request->colors);
+        $product->categories()->sync($request->categories);
         $product->tags()->sync($request->tags);
 
         return new ProductResource($product);
@@ -39,9 +48,20 @@ class ProductController extends Controller
 
     public function update(StoreProductRequest $request, Product $product)
     {
-        $product->update($request->all());
+        $product->title = $request->title;
+        $product->price = $request->price;
+        $product->sale_price = $request->sale_price;
+        $product->size = $request->size;
+        $product->description = $request->description;
+        $product->additional_info = $request->additional_info;
+        $product->tech_details = $request->tech_details;
+
+        $product->save();
+
         $product->colors()->sync($request->colors);
+        $product->categories()->sync($request->categories);
         $product->tags()->sync($request->tags);
+
         return new ProductResource($product);
     }
 

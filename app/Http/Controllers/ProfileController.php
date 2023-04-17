@@ -13,14 +13,26 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $profiles = Profile::paginate(10);
+        $profiles = Profile::with("user")->paginate(10);
         return new ProfileCollection($profiles);
     }
 
     public function store(ProfileRequest $request)
     {
-        $profile = Profile::create($request->all());
-
+        $profile = new Profile();
+        $profile->first_name = $request->first_name;
+        $profile->last_name = $request->last_name;
+        $profile->address_street = $request->address_street;
+        $profile->address_appartment = $request->address_appartment;
+        $profile->address_town = $request->address_town;
+        $profile->address_state = $request->address_state;
+        $profile->address_country = $request->address_country;
+        $profile->address_postcode = $request->address_postcode;
+        $profile->phone = $request->phone;
+        $profile->avatar = $request->avatar;
+        $user = User::find($request->user);
+        $profile->user()->associate($user);
+        $profile->save();
         return new ProfileResource($profile);
     }
 
@@ -31,7 +43,19 @@ class ProfileController extends Controller
 
     public function update(ProfileRequest $request, Profile $profile)
     {
-        $profile->update($request->all());
+        $profile->first_name = $request->first_name;
+        $profile->last_name = $request->last_name;
+        $profile->address_street = $request->address_street;
+        $profile->address_appartment = $request->address_appartment;
+        $profile->address_town = $request->address_town;
+        $profile->address_state = $request->address_state;
+        $profile->address_country = $request->address_country;
+        $profile->address_postcode = $request->address_postcode;
+        $profile->phone = $request->phone;
+        $profile->avatar = $request->avatar;
+        $user = User::find($request->user);
+        $profile->user()->associate($user);
+        $profile->save();
 
         return new ProfileResource($profile);
     }
@@ -39,6 +63,6 @@ class ProfileController extends Controller
     public function destroy(Profile $profile)
     {
         $profile->delete();
-        return response(null, 204);
+        return response(null, 202);
     }
 }

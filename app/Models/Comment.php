@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
@@ -13,13 +13,18 @@ class Comment extends Model
 
     protected $fillable = [
         'title',
-        'comment',
-        'user_id'
+        'comment'
     ];
 
 
-    public function commentable(): MorphTo
+    public function post(): BelongsTo
     {
-        return $this->morphTo();
+        return $this->belongsTo(Post::class);
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+    
 }

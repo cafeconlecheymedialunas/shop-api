@@ -22,4 +22,16 @@ class PostCollection extends ResourceCollection
             ]
         ];
     }
+
+    public function with($request)
+    {
+        return [
+            "included" => [
+                "user" => $this->collection->pluck("user")->unique()->values()->all(),
+                "categories" => $this->collection->pluck("categories")->unique()->values()->all(),
+                "tags" => $this->collection->pluck("tags")->unique()->values()->all(),
+                "comments" => $this->collection->pluck("comments")->unique()->values()->all(),
+            ]
+        ];
+    }
 }

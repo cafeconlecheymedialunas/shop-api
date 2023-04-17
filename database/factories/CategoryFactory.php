@@ -19,7 +19,7 @@ class CategoryFactory extends Factory
         return [
             "name" => fake()->name(),
             "description" => fake()->paragraph(),
-            "image" => fake()->imageUrl()
+            "image" => "https://picsum.photos/seed/picsum/200/300"
         ];
     }
 }

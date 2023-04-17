@@ -27,8 +27,8 @@ class TagResource extends JsonResource
             ],
 
             'relationships' => [
-                'user' => setRelationshipData('user', $this->user),
-                'book' => setRelationshipData('book', $this->book)
+                'posts' => setRelationshipData('post', $this->posts),
+                'products' => setRelationshipData('product', $this->products)
             ],
             'links' => [
                 'self' => route('tags.show', $this->id)

@@ -3,7 +3,7 @@
 function setRelationshipData($type, $data)
 {
     $return = [];
-    if (!$data) return;
+    if (empty($data)) return;
     if (isset($data['id'])) {
         return $return[] = [
             'id' =>  $data['id'],
